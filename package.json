@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-   "start":"node --env-file=.env server.js",
-   "watch": "node --watch --env-file=.env server.js"
+    "start": "node --env-file=.env server.js",
+    "watch": "node --watch --env-file=.env server.js"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,8 @@
       "onFail": "download"
     }
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
