@@ -71,7 +71,26 @@ function destroy(request, response) {
 }
 
 
+function store(request, response) {
+
+    // I dati inviati da Postman, grazie ad app.use(express.json()),
+    const datiInArrivo = request.body;
+
+    
+    console.log("Dati del nuovo post ricevuti da Postman:");
+    console.log(datiInArrivo);
+
+    // E poi di restituirli al client (Postman) per conferma.
+    // Usiamo lo status 201 (Created), che è lo standard per la creazione di una nuova risorsa.
+    response.status(201).json({
+        messaggio: "Dati ricevuti e decifrati correttamente",
+        dati: datiInArrivo
+    });
+}
+
 export {
     index,
-    show
+    show,
+    destroy,
+    store
 }
