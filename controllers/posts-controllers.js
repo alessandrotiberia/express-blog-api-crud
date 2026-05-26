@@ -1,7 +1,7 @@
-import posts from '../imgs/posts/posts';
+import posts from '../imgs/posts/posts.js';
 
 function index(request, response) {
-    response.json(posts);
+    response.status(200).json(posts);
 }
 
 

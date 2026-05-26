@@ -1,10 +1,10 @@
 import express from 'express';
-import router from './routers/posts-routers';
+import router from './routers/posts-routers.js';
 
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
 
-app.use('/posts', posts-router); // ricevi richiesta get vai a postrouter
+app.use('/posts',router); // ricevi richiesta get vai a postrouter
 
 app.listen(port, (Error) => {
     if(Error ) {

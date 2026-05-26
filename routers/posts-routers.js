@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { index } from '../controllers/posts-controllers';
+import { index } from '../controllers/posts-controllers.js';
 
 const router = express.Router();
 router.get('/', index);
