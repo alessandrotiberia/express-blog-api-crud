@@ -73,19 +73,24 @@ function destroy(request, response) {
 
 function store(request, response) {
 
-    // I dati inviati da Postman, grazie ad app.use(express.json()),
-    const datiInArrivo = request.body;
+    const { title, content } = request.body || {};
+    // se manca titolo o è stringa vuota
+    if (!title || title.trim() === '') {
+        response.status(400)
+            .json({
+                error: "validazione fallita",
+                results: ' inserire campo titolo corretto'
+            });
+        return;
+    }
 
-    
-    console.log("Dati del nuovo post ricevuti da Postman:");
-    console.log(datiInArrivo);
-
-    // E poi di restituirli al client (Postman) per conferma.
-    // Usiamo lo status 201 (Created), che è lo standard per la creazione di una nuova risorsa.
-    response.status(201).json({
-        messaggio: "Dati ricevuti e decifrati correttamente",
-        dati: datiInArrivo
-    });
+    if (!content || title.trim() === '') {
+        response.status(400).json({
+            error: "Validazione fallita",
+            results: "Il campo 'contenuto' è obbligatorio."
+        });
+        return;
+    }
 }
 
 export {
