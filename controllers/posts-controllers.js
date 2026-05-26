@@ -91,8 +91,30 @@ function store(request, response) {
         });
         return;
     }
-}
 
+    let newId = 1;
+    if (posts.length > 0) {
+        const ultimoPost = posts[posts.length - 1]; //
+        newId = ultimoPost.id + 1;
+    }
+
+    const newPost = {
+        id: newId,
+        title: title,
+        content: content
+    };
+
+    posts.push(newPost);
+
+    console.log("nuovo post aggiunto :", posts);
+
+    response.status(201)
+        .json({
+            error: null,
+            results: newPost
+        });
+
+}
 export {
     index,
     show,
