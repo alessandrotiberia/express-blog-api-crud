@@ -115,9 +115,66 @@ function store(request, response) {
         });
 
 }
+
+function update(request, response) {
+    const { id } = request.params;
+    const idOk = Number(id.trim());
+
+    if (isNaN(idOk) || idOk <= 0) {
+        response.status(400).json({
+            error: "id non corretto",
+            results: "id inserito non valido"
+        });
+        return;
+    }
+    const postDaModificare = posts.find((postSingolo) => postSingolo.id === idOk);
+
+    if (postDaModificare === undefined) {
+        response.status(404).json({
+            error: "Post non trovato",
+            results: "Non esiste nessun post con l'id specificato"
+        });
+        return;
+    }
+
+
+    const { title, content } = request.body || {};
+
+    // 4. Validiamo i nuovi dati
+    if (!title || title.trim() === "") {
+        response.status(400).json({
+            error: "Validazione fallita",
+            results: "Il campo 'titolo' è obbligatorio."
+        });
+        return;
+    }
+
+    if (!content || content.trim() === "") {
+        response.status(400).json({
+            error: "Validazione fallita",
+            results: "Il campo 'contenuto' è obbligatorio."
+        });
+        return;
+    }
+
+
+    postDaModificare.title = title;
+    postDaModificare.content = content;
+    
+    console.log(`Post con id ${idOk} aggiornato con successo. Ecco la lista:`);
+    console.log(posts);
+
+    
+    response.status(200).json({
+        error: null,
+        results: postDaModificare
+    });
+}
+
 export {
     index,
     show,
     destroy,
-    store
+    store,
+    update
 }
