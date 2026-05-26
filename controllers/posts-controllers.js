@@ -160,11 +160,11 @@ function update(request, response) {
 
     postDaModificare.title = title;
     postDaModificare.content = content;
-    
+
     console.log(`Post con id ${idOk} aggiornato con successo. Ecco la lista:`);
     console.log(posts);
 
-    
+
     response.status(200).json({
         error: null,
         results: postDaModificare
