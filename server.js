@@ -4,6 +4,10 @@ import router from './routers/posts-routers.js';
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
 
+// Aggiungiamo il body-parser integrato in Express
+// Questo passaggio è fondamentale: senza questo, request.body risulterà undefined
+app.use(express.json());
+
 app.use('/posts',router); // ricevi richiesta get vai a postrouter
 
 app.listen(port, (Error) => {
